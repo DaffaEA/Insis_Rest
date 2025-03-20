@@ -112,5 +112,61 @@ async deleteChara(req: Request, res: Response, next: NextFunction) {
         });
         next(error);
     }
-}
+},
+
+async geteidolon(req: Request, res: Response, next: NextFunction) {
+    try {
+        const eidolon = await CharaService.geteidolon(req.params.name);
+        res.status(200).json({
+        status: 200,
+        message: "Success",
+        data: eidolon
+        });
+    } catch (error) {
+        res.status(400).json({
+        status: 400,
+        message: "Error retrieving eidolon",
+        error: (error as Error).message
+        });
+        next(error);
+    }
+    },
+
+async getmove(req: Request, res: Response, next: NextFunction) {
+    try {
+        const trace = await CharaService.getmove(req.params.name);
+        res.status(200).json({
+        status: 200,
+        message: "Success",
+        data: trace
+        });
+    } catch (error) {
+        res.status(400).json({
+        status: 400,
+        message: "Error retrieving trace",
+        error: (error as Error).message
+        });
+        next(error);
+    }
+    },
+
+async getstat(req: Request, res: Response, next: NextFunction) {
+    try {
+        const stats = await CharaService.getstat(req.params.name);
+        res.status(200).json({
+        status: 200,
+        message: "Success",
+        data: stats
+        });
+    } catch (error) {
+        res.status(400).json({
+        status: 400,
+        message: "Error retrieving stats",
+        error: (error as Error).message
+        });
+        next(error);
+    }
+    }
+
+
 };

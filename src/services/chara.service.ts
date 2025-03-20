@@ -109,5 +109,43 @@ export const CharaService = {
         } catch (error) {
             throw error;
         }
+    },
+
+    async geteidolon(charaId: string) {
+        try {
+            const charas = await chara.findOne({name: charaId});
+            if (charas) {
+                return charas.Eidolon;
+            } else {
+                throw new Error('Character not found');
+            }
+        }
+        catch (error) {
+            throw error;
+        }
+    }, 
+
+    async getmove(charaId: string) {
+        try {
+            const charas = await chara.findOne({name: charaId});
+            if (charas) {
+                return charas.Trace;
+            } else {
+                throw new Error('Character not found');
+            }
+        }
+        catch (error) {
+            throw error;
+        }
+    },
+
+    async getstat(charaId: string) {
+        try {
+            const charas = await chara.findOne({name: charaId}, {Trace: 0, Eidolon: 0});
+            return charas;
+        }
+        catch (error) {
+            throw error;
+        }
     }
 };
